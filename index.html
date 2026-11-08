@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A one-page summary, in your own words, for the final conversation with your sponsor.">
+<meta property="og:title" content="Coaching close-out">
+<meta property="og:description" content="Six questions. The page builds a one-page PDF you take into the meeting with your sponsor.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1A1A'/%3E%3Crect x='8' y='9' width='16' height='2' fill='%23fff'/%3E%3Crect x='8' y='15' width='16' height='2' fill='%23fff'/%3E%3Crect x='8' y='21' width='10' height='2' fill='%23fff'/%3E%3C/svg%3E">
+<title>Coaching close-out</title>
+<style>
+  :root{
+    --ink:#1A1A1A; --mid:#4A4A4A; --grey:#767676; --hair:#CFCFCF;
+    --rule:#1A1A1A; --bg:#F4F4F2; --panel:#FFFFFF; --warn:#9A3412;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:Arial,Helvetica,sans-serif; color:var(--ink);
+    background:var(--bg); font-size:15px; line-height:1.5;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  /* ---------- screen ---------- */
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 96px}
+  .intro{background:var(--panel);padding:24px 26px;border:1px solid var(--hair)}
+  h1{margin:0 0 4px;font-size:25px;line-height:1.2;font-weight:bold}
+  .sub{margin:0 0 16px;font-size:14px;color:var(--mid)}
+  .hr{height:1px;background:var(--rule);margin:14px 0 16px}
+  .intro p{margin:0 0 10px;font-size:14px;color:var(--mid)}
+  .intro p:last-of-type{margin-bottom:0}
+  .intro b{color:var(--ink)}
+
+  .meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+  .meta label{flex:1 1 190px;display:block}
+  .lbl{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+       color:var(--grey);margin-bottom:5px;font-weight:bold}
+  input[type=text],input[type=date]{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    padding:9px 10px;border:1px solid var(--hair);background:var(--panel);border-radius:0}
+  input:focus,textarea:focus{outline:2px solid var(--ink);outline-offset:-2px}
+
+  .block{background:var(--panel);border:1px solid var(--hair);padding:20px 24px;margin-top:14px}
+  .block h2{margin:0 0 3px;font-size:18px;line-height:1.25}
+  .prompt{margin:0 0 10px;font-size:13.5px;color:var(--mid)}
+  textarea{
+    width:100%;font-family:inherit;font-size:15px;line-height:1.5;color:var(--ink);
+    padding:10px;border:1px solid var(--hair);background:var(--panel);
+    resize:vertical;min-height:84px;border-radius:0}
+  .count{margin-top:5px;font-size:12px;color:var(--grey);text-align:right}
+  .count.near{color:var(--warn)}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);
+       padding:11px 20px;display:flex;gap:12px;align-items:center;justify-content:center;
+       flex-wrap:wrap}
+  .bar button{font-family:inherit;font-size:14px;font-weight:bold;padding:10px 20px;
+       border:1px solid #fff;background:transparent;color:#fff;cursor:pointer;border-radius:0}
+  .bar button.primary{background:#fff;color:var(--ink)}
+  .bar button:hover{opacity:.82}
+  .bar .saved{color:#C9C9C9;font-size:12.5px;margin-left:4px;min-width:118px}
+
+  /* ---------- preview ---------- */
+  .sheet{display:none}
+  body.preview .wrap{display:none}
+  body.preview .sheet{display:block;background:var(--panel);max-width:760px;
+       margin:26px auto 96px;padding:46px 52px;border:1px solid var(--hair)}
+
+  .sheet .doc-h1{margin:0 0 3px;font-size:23px;font-weight:bold;line-height:1.2}
+  .sheet .doc-meta{margin:0;font-size:13px;color:var(--mid)}
+  .sheet .doc-rule{height:1.5px;background:var(--rule);margin:11px 0 20px}
+  .sheet section{margin:0 0 17px;page-break-inside:avoid;break-inside:avoid}
+  .sheet section h3{margin:0 0 4px;font-size:14.5px;font-weight:bold}
+  .sheet section .body{margin:0;font-size:13.5px;line-height:1.5;white-space:pre-wrap;
+       overflow-wrap:break-word;word-break:break-word}
+  .sheet .foot{margin-top:24px;padding-top:9px;border-top:1px solid var(--hair);
+       font-size:11px;color:var(--grey)}
+  .empty-note{font-size:13px;color:var(--warn);margin:0 0 16px}
+
+  /* ---------- print ---------- */
+  @page{size:A4;margin:18mm 17mm}
+  @media print{
+    html,body{background:#fff !important;font-size:11pt}
+    .wrap,.bar,.empty-note{display:none !important}
+    body .sheet, body.preview .sheet{
+      display:block !important; max-width:none !important; width:auto !important;
+      margin:0 !important; padding:0 !important; border:0 !important; background:#fff !important}
+    .sheet section{margin:0 0 13pt !important}
+    .sheet .doc-h1{font-size:17pt}
+    .sheet .doc-meta{font-size:9.5pt}
+    .sheet .doc-rule{margin:9pt 0 14pt}
+    .sheet section h3{font-size:10.5pt}
+    .sheet section .body{font-size:10pt;line-height:1.42}
+    .sheet .foot{font-size:8pt;margin-top:16pt}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Coaching close-out</h1>
+    <p class="sub">A one-page summary, in your words, for the conversation with your sponsor.</p>
+    <div class="hr"></div>
+    <p>Answer the six questions below and the page builds a one-page PDF you can take into the
+      meeting. <b>You present it, not your coach.</b></p>
+    <p>Nothing here is sent anywhere. Your answers stay in this browser on your own machine, and
+      your coach never sees them unless you choose to share them. <b>You decide what goes in and
+      what stays out.</b> Anything you leave blank is simply left off the page.</p>
+    <p>Keep answers short. The limits are there so it all fits on one page.</p>
+
+    <div class="meta">
+      <label><span class="lbl">Your name</span><input type="text" id="f_name"></label>
+      <label><span class="lbl">Your role</span><input type="text" id="f_role"></label>
+      <label><span class="lbl">Date of meeting</span><input type="date" id="f_date"></label>
+    </div>
+  </div>
+
+  <!-- To change a question, edit this block only. data-heading is what prints on the PDF.
+       data-max must match the textarea's maxlength. -->
+  <div class="block" data-q="q1" data-heading="Where I started">
+    <h2>1. Where I started</h2>
+    <p class="prompt">What did you want to work on when this began?</p>
+    <textarea id="q1" maxlength="280" data-max="280"></textarea>
+    <div class="count"></div>
+  </div>
+
+  <div class="block" data-q="q2" data-heading="What I actually worked on">
+    <h2>2. What I actually worked on</h2>
+    <p class="prompt">Often it turns out to be something different. If it changed, say so.</p>
+    <textarea id="q2" maxlength="280" data-max="280"></textarea>
+    <div class="count"></div>
+  </div>
+
+  <div class="block" data-q="q3" data-heading="One thing I did differently">
+    <h2>3. One thing I did differently</h2>
+    <p class="prompt">A specific situation. What was happening, what you did, and what came of it.
+      One real example lands harder than any general description.</p>
+    <textarea id="q3" maxlength="440" data-max="440" style="min-height:118px"></textarea>
+    <div class="count"></div>
+  </div>
+
+  <div class="block" data-q="q4" data-heading="What the people around me would notice">
+    <h2>4. What the people around me would notice</h2>
+    <p class="prompt">What would your team or your colleagues say is different?</p>
+    <textarea id="q4" maxlength="280" data-max="280"></textarea>
+    <div class="count"></div>
+  </div>
+
+  <div class="block" data-q="q5" data-heading="What I'm still working on">
+    <h2>5. What I'm still working on</h2>
+    <p class="prompt">Where you've got to, and what's still live.</p>
+    <textarea id="q5" maxlength="280" data-max="280"></textarea>
+    <div class="count"></div>
+  </div>
+
+  <div class="block" data-q="q6" data-heading="What I'd like from you">
+    <h2>6. What I'd like from you</h2>
+    <p class="prompt">Addressed to your sponsor. What would you like them to notice, back, or do
+      differently over the next six months? Be specific enough that they could say yes to it.</p>
+    <textarea id="q6" maxlength="320" data-max="320"></textarea>
+    <div class="count"></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet">
+  <p class="empty-note" id="emptyNote"></p>
+  <h2 class="doc-h1" id="s_name">&nbsp;</h2>
+  <p class="doc-meta" id="s_meta"></p>
+  <div class="doc-rule"></div>
+  <div id="s_body"></div>
+  <p class="foot">Prepared by me for my sponsor conversation. My own words, my own summary of the
+    coaching.</p>
+</div>
+
+<div class="bar">
+  <button id="btnPreview" class="primary">Preview the page</button>
+  <button id="btnPdf">Save as PDF</button>
+  <button id="btnClear">Clear</button>
+  <span class="saved" id="savedMsg"></span>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var KEY = "pcc_closeout_v1";
+  var el  = function(id){ return document.getElementById(id); };
+  var blocks = Array.prototype.slice.call(document.querySelectorAll(".block[data-q]"));
+  var metaFields = ["f_name","f_role","f_date"];
+  var fields = metaFields.concat(blocks.map(function(b){ return b.getAttribute("data-q"); }));
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c];
+    });
+  }
+
+  /* ---- persistence (best effort; the page works without it) ---- */
+  var saveTimer = null;
+  function flash(msg){
+    el("savedMsg").textContent = msg;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ el("savedMsg").textContent = ""; }, 2200);
+  }
+  function load(){
+    var data = null;
+    try { data = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ return; }
+    if(!data) return;
+    fields.forEach(function(id){
+      if(typeof data[id] === "string" && el(id)) el(id).value = data[id];
+    });
+  }
+  function save(){
+    var data = {};
+    fields.forEach(function(id){ if(el(id)) data[id] = el(id).value; });
+    try { localStorage.setItem(KEY, JSON.stringify(data)); flash("Saved on this device"); }
+    catch(e){ flash("Not saved, keep this tab open"); }
+  }
+
+  /* ---- character counters ---- */
+  function counters(){
+    blocks.forEach(function(b){
+      var t = el(b.getAttribute("data-q"));
+      var c = b.querySelector(".count");
+      if(!t || !c) return;
+      var max  = parseInt(t.getAttribute("data-max"), 10) || 0;
+      var left = max - t.value.length;
+      c.textContent = left + " characters left";
+      c.className = (left <= 40) ? "count near" : "count";
+    });
+  }
+
+  function prettyDate(v){
+    if(!v) return "";
+    var p = v.split("-");
+    if(p.length !== 3) return v;
+    var months = ["January","February","March","April","May","June","July",
+                  "August","September","October","November","December"];
+    var mi = parseInt(p[1],10) - 1;
+    if(mi < 0 || mi > 11) return v;
+    return parseInt(p[2],10) + " " + months[mi] + " " + p[0];
+  }
+
+  /* ---- build the one-pager from the answers ---- */
+  function build(){
+    var name = el("f_name").value.trim();
+    var role = el("f_role").value.trim();
+    var date = prettyDate(el("f_date").value);
+
+    el("s_name").textContent = name || " ";
+    el("s_meta").textContent = [role, date].filter(Boolean).join("  ·  ");
+
+    var html = "", filled = 0;
+    blocks.forEach(function(b){
+      var t = el(b.getAttribute("data-q"));
+      var v = t ? t.value.trim() : "";
+      if(!v) return;
+      filled++;
+      html += '<section><h3>' + esc(b.getAttribute("data-heading") || "") + '</h3>' +
+              '<p class="body">' + esc(v) + '</p></section>';
+    });
+    el("s_body").innerHTML = html;
+
+    var note = "";
+    if(filled === 0){ note = "Nothing filled in yet. Go back and answer at least one question."; }
+    else if(!name){ note = "Add your name before saving the PDF."; }
+    el("emptyNote").textContent = note;
+
+    return filled;
+  }
+
+  function showPreview(on){
+    document.body.classList.toggle("preview", on);
+    el("btnPreview").textContent = on ? "Back to the questions" : "Preview the page";
+    window.scrollTo(0,0);
+  }
+
+  el("btnPreview").addEventListener("click", function(){
+    var on = !document.body.classList.contains("preview");
+    if(on) build();
+    showPreview(on);
+  });
+
+  el("btnPdf").addEventListener("click", function(){
+    var filled = build();
+    showPreview(true);
+    if(filled === 0) return;
+    setTimeout(function(){ window.print(); }, 60);
+  });
+
+  el("btnClear").addEventListener("click", function(){
+    if(!window.confirm("Clear all your answers on this device? This cannot be undone.")) return;
+    fields.forEach(function(id){ if(el(id)) el(id).value = ""; });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    counters();
+    showPreview(false);
+    flash("Cleared");
+  });
+
+  fields.forEach(function(id){
+    var n = el(id);
+    if(n) n.addEventListener("input", function(){ counters(); save(); });
+  });
+
+  load();
+  counters();
+})();
+</script>
+</body>
+</html>
